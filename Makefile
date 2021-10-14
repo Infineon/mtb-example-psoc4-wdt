@@ -7,15 +7,15 @@
 #
 ################################################################################
 # \copyright
-# Copyright 2018-2020 Cypress Semiconductor Corporation
+# Copyright 2018-2021, Cypress Semiconductor Corporation (an Infineon company)
 # SPDX-License-Identifier: Apache-2.0
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+# 
 #     http://www.apache.org/licenses/LICENSE-2.0
-#
+# 
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,7 @@
 # configurations. If TARGET is manually edited, ensure TARGET_<BSP>.mtb with a
 # valid URL exists in the application, run 'make getlibs' to fetch BSP contents
 # and update or regenerate launch configurations for your IDE.
-TARGET=CY8CKIT-149
+TARGET=CY8CKIT-041S-MAX
 
 # Name of application (used to derive name of final linked file).
 #
@@ -44,7 +44,7 @@ APPNAME=mtb-example-psoc4-wdt
 
 # Name of toolchain to use. Options include:
 #
-# GCC_ARM -- GCC 7.2.1, provided with ModusToolbox IDE
+# GCC_ARM -- GCC provided with ModusToolbox IDE
 # ARM     -- ARM Compiler (must be installed separately)
 # IAR     -- IAR Compiler (must be installed separately)
 #
@@ -79,10 +79,10 @@ VERBOSE=
 # ... then code in directories named COMPONENT_foo and COMPONENT_bar will be
 # added to the build
 #
-COMPONENTS+=CUSTOM_DESIGN_MODUS
+COMPONENTS=CUSTOM_DESIGN_MODUS
 
 # Like COMPONENTS, but disable optional code that was enabled by default.
-DISABLE_COMPONENTS+=BSP_DESIGN_MODUS
+DISABLE_COMPONENTS=BSP_DESIGN_MODUS
 
 # By default the build system automatically looks in the Makefile's directory
 # tree for source code and builds it. The SOURCES variable can be used to
@@ -96,6 +96,9 @@ INCLUDES=
 
 # Add additional defines to the build process (without a leading -D).
 DEFINES=
+
+# Select softfp or hardfp floating point. Default is softfp.
+VFP_SELECT=
 
 # Additional / custom C compiler flags.
 #
@@ -152,7 +155,6 @@ CY_GETLIBS_SHARED_PATH=../
 # Directory name of the shared repo location.
 #
 CY_GETLIBS_SHARED_NAME=mtb_shared
-
 
 # Absolute path to the compiler's "bin" directory.
 #
