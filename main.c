@@ -8,7 +8,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2020-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2020-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -79,13 +79,9 @@ Max limit is 1698 ms. */
 #define ILO_START_UP_TIME          (2U)
 
 /* LED states */
-#ifdef TARGET_CY8CKIT_149
-    #define LED_STATE_ON               (1U)
-    #define LED_STATE_OFF              (0U)
-#else
-    #define LED_STATE_ON               (0U)
-    #define LED_STATE_OFF              (1U)
-#endif
+/* Note: the LED states are inverted for the CY8CKIT-149 kit. */
+#define LED_STATE_ON               (0U)
+#define LED_STATE_OFF              (1U)
 
 /*****************************************************************************
 * Function Prototypes
@@ -144,7 +140,7 @@ int main(void)
     /* Check the reason for device reset */
     if(CY_SYSLIB_RESET_HWWDT == Cy_SysLib_GetResetReason())
     {
-        /* WDT reset event occurred- blink LED thrice */
+        /* WDT reset event occurred - blink LED thrice */
         for(uint8_t i = 0; i < 3; i++)
         {
             Cy_GPIO_Write(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_NUM, LED_STATE_ON);
@@ -154,7 +150,7 @@ int main(void)
         }
     }
 
-    /* In case of POR/ XRES event/ Software reset- blink LED once */
+    /* In case of POR/ XRES event/ Software reset - blink LED once */
     else
     {
         Cy_GPIO_Write(CYBSP_USER_LED1_PORT, CYBSP_USER_LED1_NUM, LED_STATE_ON);
